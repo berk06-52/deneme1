@@ -1,0 +1,12 @@
+Eksik var mý bilmiyorum
+yaparken 2 sorun oldu
+
+1-bilgisayarý açtýðýmda sql servermanagement studio 18 de bi önceki veri tabaný diagramý açamýyorum.
+Eski diagramý açmaya çalýþdýgýmda program donuyor kendini yeniden baþlatýyor .
+ her seferinde yeni diagram diyip eski tablolarý kopyalayarak yeni diagramla çalýþtýrdým.
+
+2-Makalelere yorum kaydetmesi gerekirken buton çalýþmadý click eventi görmedi anlayamadým videoda sýkýntý yokdu.
+details.cshtml de
+video:http://www.youtube.com/watch?v=5ggdHqLf4Eg&t=4m10s
+
+15. videoda yeniþeyler ekliyordu , eski makaleleri görünsün gibi devamýný çekmemiþ.

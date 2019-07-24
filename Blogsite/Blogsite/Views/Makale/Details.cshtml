@@ -1,0 +1,107 @@
+﻿@model Blogsite.ViewModels.SonAtilanMakaleViewModel
+  
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center text-danger">@Model.Makalem.baslik</h2> 
+
+<div>
+    <h4>Makaleler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Makalem.Kategori.KategoriAdi )
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Makalem.Kategori.KategoriAdi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Makalem.Tarih)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Makalem.Tarih)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Makalem.icerik)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Makalem.icerik)
+        </dd>
+
+        <dt>
+           
+                @Model.Makalem.Kullanici.KullaniciAdi
+            
+        </dt>
+
+        <dd>
+            <p>
+                @Session["username"].ToString()
+            </p>
+        </dd>
+
+
+    </dl>
+</div>
+@if (Model.Makalem.Kullanici.KullaniciAdi == Session["username"].ToString())
+{
+    <h3>Etiketler</h3>
+    foreach(var i in Model.Makalem.Etikets.ToList())
+    {
+        <p>@i.EtiketAd</p>
+    }
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Makalem.id })
+
+    @Html.ActionLink("Etiket Ekle", "Edit", new { id = Model.Makalem.id })
+</p>
+}
+<p>
+
+    @Html.ActionLink("Back to List", "Index")
+</p>
+<div>
+
+    <textarea  type="text" id="yorum"></textarea>
+    <br/>
+    <button   class="btn btn-info" id="YorumYap" >Yorum Yap</button>
+
+</div>
+
+<hr />
+@Html.Partial("YorumListele",Model.Makalem.Yorums.ToList())
+
+@section scripts{
+    <script type="text/javascript">
+
+        $(function () {
+        //ÇALIŞMIYOR SATIR 71 BUTTON ÇALIŞMADI VİDEOSU:http://www.youtube.com/watch?v=5ggdHqLf4Eg&t=4m10s
+            $("#YorumYap").click(function () {
+                //YORUM YAPMA KISMI 
+  
+                var yorumumuz = $("#yorum").val();
+                $.ajax({
+                    url: '/Makaleler/YorumYap',
+                    data: { yorum: yorumumuz, Makaleid:@Model.Makalem.id},
+                    type='POST',
+                    dataType: 'json',
+                    success: function (data) {
+                        alert("Başarı");
+                    }
+
+                });
+
+
+            });
+
+        })
+
+    </script>
+    }   
